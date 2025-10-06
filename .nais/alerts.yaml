@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: nais-analyse-deploy-datastory
+  namespace: nais-analyse
+  labels:
+    team: nais-analyse
+spec:
+  groups:
+  - name: nais-analyse-alert
+    rules:
+    - alert: NaisjobDown
+      expr: kube_job_failed{job_name=~"^deploy-datastory.*", namespace="nais-analyse"} > 0
+      for: 2m
+      annotations:
+        consequence: Datafortelling https://data.ansatt.nav.no/quarto/3c918557-eb44-4955-aeeb-c29fbee04dfc (deploy-datastory) blir ikke oppdatert
+        action: "`Oppdateres normalt daglig, men ikke kritisk. Se logger på https://logs.adeo.no -> søk etter pod:deploy-datastory* AND namespace:nais-analyse`"
+        summary: |-
+           Naisjob deploy-datastory feiler i prod-gcp namespace nais-analyse (repo https://github.com/navikt/deploy-datastory)
+      labels:
+        namespace: nais-analyse
+        severity: warning

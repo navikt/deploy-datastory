@@ -1,0 +1,36 @@
+apiVersion: nais.io/v1
+kind: Naisjob
+metadata:
+  labels:
+    team: nais-analyse
+  name: deploy-datastory
+  namespace: nais-analyse
+  annotations:
+    nais.io/read-only-file-system: "false"
+spec:
+  image: {{ image }}
+  schedule: "15 6 * * *"
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  backoffLimit: 2
+  env:
+    - name: ENV
+      value: data.nav.no
+    - name: QUARTO_ID
+      value: 3c918557-eb44-4955-aeeb-c29fbee04dfc
+  envFrom:
+    - secret: datamarkedsplassen-team-token
+  resources:
+    requests:
+      cpu: 200m
+      memory: 512Mi
+    limits:
+      memory: 1024Mi
+
+  accessPolicy:
+    outbound:
+      external:
+        - host: data.nav.no
+        - host: cdnjs.cloudflare.com
+        - host: fonts.googleapis.com
+        - host: cdn.plot.ly
