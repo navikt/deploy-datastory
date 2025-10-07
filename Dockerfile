@@ -44,7 +44,7 @@ RUN ln -s /quarto/quarto-dist/bin/quarto /usr/local/bin/quarto
 ENV PATH="/opt/venv/bin:$PATH"
 RUN python3 -m venv /opt/venv
 
-COPY update_datastory.py .
+COPY main.py .
 COPY deploy-complete-doc-datafortelling.ipynb .
 
 RUN chown python:python /quarto -R
@@ -54,4 +54,4 @@ ENV XDG_CACHE_HOME=/quarto/cache
 ENV XDG_DATA_HOME=/quarto/share
 
 USER 1069
-ENTRYPOINT ["python", "update_datastory.py"]
+ENTRYPOINT ["python", "main.py"]
