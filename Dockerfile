@@ -5,8 +5,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 COPY requirements.txt .
 
 RUN apt-get update && apt-get install -yq --no-install-recommends \
-curl \
-jq && \
+wget && \
 apt-get clean && \
 rm -rf /var/lib/apt/lists/*
 
@@ -26,10 +25,12 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Install XKCD font
-RUN wget -O /tmp/xkcd-script.ttf "https://github.com/ipython/xkcd-font/raw/master/xkcd-script/font/xkcd-script.ttf" && \
+# Install XKCD font (the actual "xkcd" font, not "xkcd Script")
+RUN wget -O /tmp/xkcd.otf "https://github.com/ipython/xkcd-font/raw/master/xkcd/build/xkcd.otf" && \
+    wget -O /tmp/xkcd-Regular.otf "https://github.com/ipython/xkcd-font/raw/master/xkcd/build/xkcd-Regular.otf" && \
     mkdir -p /usr/share/fonts/truetype/xkcd && \
-    mv /tmp/xkcd-script.ttf /usr/share/fonts/truetype/xkcd/ && \
+    mv /tmp/xkcd.otf /usr/share/fonts/truetype/xkcd/ && \
+    mv /tmp/xkcd-Regular.otf /usr/share/fonts/truetype/xkcd/ && \
     fc-cache -fv
 
 RUN groupadd -g 1069 python && \
