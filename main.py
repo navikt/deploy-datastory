@@ -56,10 +56,14 @@ def update_quarto(files_to_upload: list[str]):
 
 
 if __name__ == '__main__':
-    if os.getenv('DATAMARKEDSPLASSEN_TEAM_TOKEN') is None:
+    is_dev = os.getenv('DATAMARKEDSPLASSEN_TEAM_TOKEN') is None
+    if is_dev:
+        logger.info("Env: dev")
         os.environ['DATAMARKEDSPLASSEN_TEAM_TOKEN'] = get_datastory_token_dev()
         os.environ['ENV'] = 'data.ekstern.dev.nav.no'
         os.environ['QUARTO_ID'] = '63738bcc-96a6-451b-b6af-4cc232236682'
+    else: 
+        logger.info("Env: prod")
     try:
         render_quarto()
         update_quarto(files_to_upload=["index.html"])
