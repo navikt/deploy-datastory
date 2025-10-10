@@ -29,7 +29,7 @@ USER quarto
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-COPY main.py .
-COPY deploy-complete-doc-datafortelling.ipynb .
+COPY --chown=quarto:quarto main.py .
+COPY --chown=quarto:quarto deploy-complete-doc-datafortelling.ipynb .
 
 ENTRYPOINT ["python", "main.py"]
