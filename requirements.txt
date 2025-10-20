@@ -1,9 +1,9 @@
-ipykernel==6.30.1
-google-cloud-secret-manager==2.24.0
-matplotlib==3.10.6
+ipykernel==7.0.1
+google-cloud-secret-manager==2.25.0
+matplotlib==3.10.7
 nbclient==0.10.2
 nbformat==5.10.4
-numpy==2.3.3
+numpy==2.3.4
 pandas==2.3.3
 pandas-gbq==0.29.2
 plotly==6.3.1
