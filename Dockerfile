@@ -1,5 +1,5 @@
 FROM gcr.io/distroless/cc AS cc
-FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/python:3.13-dev AS dev
+FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/python:3.14-dev AS dev
 
 USER root
 RUN apk add --update jq curl shadow fontconfig wget
