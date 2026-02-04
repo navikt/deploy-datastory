@@ -4,7 +4,7 @@ matplotlib==3.10.8
 nbclient==0.10.4
 nbformat==5.10.4
 numpy==2.4.2
-pandas==3.0.0
+pandas==2.3.3
 pandas-gbq==0.33.0
 plotly==6.5.2
 pyYAML==6.0.3
