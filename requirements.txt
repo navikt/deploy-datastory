@@ -1,10 +1,10 @@
 ipykernel==7.4.0
-google-cloud-secret-manager==2.31.0
+google-cloud-secret-manager==2.32.0
 matplotlib==3.11.2
 nbclient==0.11.0
 nbformat==5.11.1
 numpy==2.5.4
-pandas==3.1.0
+pandas==3.1.1
 pandas-gbq==0.35.3
 plotly==7.1.0
 pyYAML==6.0.3
